@@ -1,1 +1,1 @@
-# Lab6_DB
+Lab 06_DB
