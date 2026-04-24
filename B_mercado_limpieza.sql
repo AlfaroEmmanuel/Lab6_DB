@@ -26,9 +26,7 @@ BEGIN
     END IF;
 END //
 
--- El delimiter se usa para indicar el final de la función
-DELIMITER ;
-
+/*El delimiter se usa para indicar el final de la función*/
 DELIMITER //
 
 CREATE FUNCTION fn_purificador(nombre_sucio VARCHAR(255)) RETURNS VARCHAR(255)
