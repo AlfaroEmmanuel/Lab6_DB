@@ -1,27 +1,30 @@
 --llave 5
 DELIMITER //
-
 CREATE FUNCTION fn_escultor(p_texto_limpio VARCHAR(255), p_factor DECIMAL(10,2))
 RETURNS VARCHAR(255)
 DETERMINISTIC
 BEGIN
-    -- variable que guarda el resultado final
-    DECLARE v_resultado VARCHAR(255);
+    -- variables que guarda el resultado final
+    DECLARE v_texto_transformado VARCHAR(255);
+    DECLARE v_etiqueta VARCHAR(50);
+    DECLARE v_resultado_final VARCHAR(255);
     
     -- evaluacion de factor
     -- si el factor es mayor a 1, es de alta prioridad
     IF p_factor > 1.0 THEN
-        -- se pasa a mayusculas y agregamos el sufijo
-        SET v_resultado = CONCAT(UPPER(p_texto_limpio), ' - PRIORIDAD ALTA');
+            -- se pasa a mayusculas y agregamos el sufijo
+        SET v_texto_transformado = UPPER(p_texto_limpio);
+        SET v_etiqueta = ' - PRIORIDAD ALTA';
     ELSE
-        -- si el factor es 1 o menos, se pasa a minúsculas
-        SET v_resultado = CONCAT(LOWER(p_texto_limpio), ' - prioridad baja');
+            -- si el factor es 1 o menos, se pasa a minúsculas
+        SET v_texto_transformado = LOWER(p_texto_limpio);
+        SET v_etiqueta = ' - prioridad baja';
     END IF;
     
-    -- se return el texto corregido
-    RETURN v_resultado;
+        -- se return el texto corregido
+    SET v_resultado_final = CONCAT(v_texto_transformado, v_etiqueta);
+    RETURN v_resultado_final;
 END //
-
 DELIMITER ;
 -- fin llave 5
 
@@ -53,16 +56,19 @@ DELIMITER ;
 
 -- llave 7
 DELIMITER //
-
 CREATE FUNCTION fn_gran_sello(p_texto VARCHAR(255))
 RETURNS VARCHAR(64)
 DETERMINISTIC
 BEGIN
+    -- se usa variables intermedias
+    DECLARE v_algoritmo VARCHAR(10) DEFAULT 'SHA2-256';
+    DECLARE v_hash_final VARCHAR(64);
+    
     -- se toma el texto y se aplica el algoritmo SHA2 de 256 bitts
-    RETURN SHA2(p_texto, 256);
+    SET v_hash_final = SHA2(p_texto, 256);
+    
+    RETURN v_hash_final;
 END //
-
 DELIMITER ;
-
 -- fin llave 7
 
