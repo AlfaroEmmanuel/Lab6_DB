@@ -1,5 +1,6 @@
 --llave 5
 DELIMITER //
+
 CREATE FUNCTION fn_escultor(p_texto_limpio VARCHAR(255), p_factor DECIMAL(10,2))
 RETURNS VARCHAR(255)
 DETERMINISTIC
@@ -25,6 +26,7 @@ BEGIN
     SET v_resultado_final = CONCAT(v_texto_transformado, v_etiqueta);
     RETURN v_resultado_final;
 END //
+
 DELIMITER ;
 -- fin llave 5
 
@@ -42,7 +44,7 @@ BEGIN
     -- uso concat para unir el texto
     SET v_mensaje = CONCAT('El texto ha pasado por la Llave 6. Estado actual: [', p_texto, ']');
     
-    --se hace la insercion en la tabla 
+    -- se hace la insercion en la tabla 
     INSERT INTO logs_hashy (nombre_funcion, mensaje_accion)
     VALUES ('fn_notario', v_mensaje);
 
@@ -51,7 +53,7 @@ BEGIN
 END //
 
 DELIMITER ;
---fin llave 6
+-- fin llave 6
 
 
 -- llave 7
@@ -71,4 +73,3 @@ BEGIN
 END //
 DELIMITER ;
 -- fin llave 7
-
