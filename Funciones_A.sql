@@ -1,7 +1,7 @@
--- ========= FUNCIONES INTEGRANTE A =========
+
 DELIMITER //
 
--- LLAVE 1: El Cernidor (Verifica si el ID es número primo)
+
 CREATE FUNCTION fn_cernidor(p_id_producto INT) 
 RETURNS BOOLEAN
 DETERMINISTIC
@@ -24,7 +24,7 @@ BEGIN
     RETURN v_es_primo;
 END //
 
--- LLAVE 2: El Reloj de Arena (Verifica si el producto caducó)
+
 CREATE FUNCTION fn_reloj_arena(p_fecha_ingreso DATE, p_meses_validez INT) 
 RETURNS VARCHAR(10)
 DETERMINISTIC
