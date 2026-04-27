@@ -26,8 +26,6 @@ BEGIN
     SET v_resultado_final = CONCAT(v_texto_transformado, v_etiqueta);
     RETURN v_resultado_final;
 END //
-
-DELIMITER ;
 -- fin llave 5
 
 
@@ -51,8 +49,6 @@ BEGIN
     -- se hace return para que la cadena de dulces no se rompa
     RETURN p_texto;
 END //
-
-DELIMITER ;
 -- fin llave 6
 
 
